@@ -2,11 +2,16 @@
 
 import { useState } from "react";
 import { useChat } from "@ai-sdk/react";
+import { DefaultChatTransport } from "ai";
 
 export default function ChatPage() {
   const [input, setInput] = useState("");
 
-  const { messages, sendMessage, status, error, stop } = useChat();
+  const { messages, sendMessage, status, error, stop } = useChat({
+    transport: new DefaultChatTransport({
+      api: "/api/completion",
+    }),
+  });
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
