@@ -15,8 +15,7 @@ const tools = {
   }),
 
   execute: async ({ city }) => {
-    console.log("🔥 TOOL CALLED:", city);
-    // 1. City → coordinates
+    console.log(" TOOL CALLED:", city);
     const geoResponse = await fetch(
       `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(city)}&count=1`
     );
@@ -28,8 +27,6 @@ const tools = {
     }
 
     const location = geoData.results[0];
-
-    // 2. Coordinates → weather
     const weatherResponse = await fetch(
       `https://api.open-meteo.com/v1/forecast?latitude=${location.latitude}&longitude=${location.longitude}&current=temperature_2m,weather_code`
     );
